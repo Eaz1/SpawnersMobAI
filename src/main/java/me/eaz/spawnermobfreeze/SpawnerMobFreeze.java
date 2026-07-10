@@ -19,9 +19,6 @@ public class SpawnerMobFreeze extends JavaPlugin implements Listener {
             EntityType.SKELETON,
             EntityType.STRAY,
             EntityType.WITHER_SKELETON,
-            EntityType.CREEPER,
-            EntityType.SPIDER,
-            EntityType.CAVE_SPIDER,
             EntityType.ENDERMAN,
             EntityType.WITCH,
             EntityType.BLAZE,
@@ -46,10 +43,6 @@ public class SpawnerMobFreeze extends JavaPlugin implements Listener {
     @EventHandler
     public void onMobSpawn(CreatureSpawnEvent event) {
         if (event.getSpawnReason() != CreatureSpawnEvent.SpawnReason.SPAWNER) {
-            return;
-        }
-
-        if (!(event.getEntity() instanceof LivingEntity)) {
             return;
         }
 
