@@ -1,0 +1,6 @@
+name: SpawnerMobFreeze
+version: 1.0
+main: me.eaz.spawnermobfreeze.SpawnerMobFreeze
+author: Eaz
+api-version: 1.12
+description: Freezes hostile mobs spawned from spawners.
