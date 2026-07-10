@@ -1,38 +1,16 @@
 package me.eaz.spawnermobfreeze;
 
+import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Spider;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.EnumSet;
-import java.util.Set;
-
 public class SpawnerMobFreeze extends JavaPlugin implements Listener {
-
-    private static final Set<EntityType> HOSTILE_MOBS = EnumSet.of(
-            EntityType.ZOMBIE,
-            EntityType.HUSK,
-            EntityType.ZOMBIE_VILLAGER,
-            EntityType.SKELETON,
-            EntityType.STRAY,
-            EntityType.WITHER_SKELETON,
-            EntityType.ENDERMAN,
-            EntityType.WITCH,
-            EntityType.BLAZE,
-            EntityType.GHAST,
-            EntityType.SLIME,
-            EntityType.MAGMA_CUBE,
-            EntityType.GUARDIAN,
-            EntityType.ELDER_GUARDIAN,
-            EntityType.SILVERFISH,
-            EntityType.ENDERMITE,
-            EntityType.VINDICATOR,
-            EntityType.EVOKER,
-            EntityType.VEX
-    );
 
     @Override
     public void onEnable() {
@@ -42,16 +20,20 @@ public class SpawnerMobFreeze extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onMobSpawn(CreatureSpawnEvent event) {
-        if (event.getSpawnReason() != CreatureSpawnEvent.SpawnReason.SPAWNER) {
-            return;
+        // Do nothing - all mobs keep their normal AI.
+    }
+
+    @EventHandler
+    public void onCreeperExplode(EntityExplodeEvent event) {
+        if (event.getEntity() instanceof Creeper) {
+            event.setCancelled(true);
         }
+    }
 
-        LivingEntity mob = event.getEntity();
-
-        if (!HOSTILE_MOBS.contains(mob.getType())) {
-            return;
+    @EventHandler
+    public void onSpiderTarget(EntityTargetEvent event) {
+        if (event.getEntity() instanceof Spider) {
+            event.setCancelled(true);
         }
-
-        mob.setAI(false);
     }
 }
