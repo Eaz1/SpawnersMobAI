@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.eaz</groupId>
-    <artifactId>SpawnerMobFreeze</artifactId>
+    <artifactId>SpawnersMobAI</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>SpawnerMobFreeze</name>
+    <name>SpawnersMobAI</name>
 
     <properties>
         <java.version>1.8</java.version>
